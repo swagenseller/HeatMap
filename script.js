@@ -13,7 +13,19 @@ var values = [];
     coords[1][1] = 50;     // y2
     values[1]    = 200.5;  // t2
 //}
+var tmax = values[0];
+var tmin = values[0];
 
+for (var i =0; i<values.length; i++){
+    if(values[i] > tmax) {
+        tmax = values[i];
+    }
+    if (values[i] < tmin){
+        tmin = values[i];
+    }
+}
+console.log(tmax)
+console.log(tmin)
 
 var xSize = 200;
 var ySize = 100;
@@ -26,7 +38,10 @@ for (var z = 0; z< ySize; z++){
 }
 
 interpol(coords, values);
-
+//console.log(tempField)
+//maxMin(tmax, tmin, tempField, xSize, ySize);
+//console.log(tmax)
+//console.log(tmin)
 
 
 function setup(){
@@ -36,11 +51,13 @@ function setup(){
 
     for(var i = 0; i< ySize; i++){
         for (var j = 0; j < xSize; j++){
-            stroke(floor(tempField[i][j]), 200, 200)
+            //var color = colorMod(tempField[i][j], tmin, tmax)
+            stroke(floor(tempField[i][j]), tmin, tmax)
+            //stroke(color.r, color.g, color.b)
             point(j, i);
             if(i == 0 && j == 0){
                 console.log(floor(tempField[i][j]))
-                //stroke(50);
+                //console.log(color)
                 //rect(j,i, 50, 50)
             }
         }
@@ -58,8 +75,8 @@ function distance(a,b, x,y) {
 // calculates the wi(x)
 function subInter(a, b, x, y){
 	var n = distance(a,b,x,y);
-    var ui = 1 / Math.pow(n,2);
-    return ui;
+    var wi = 1 / Math.pow(n,2);
+    return wi;
 }
 
 // interpolation
@@ -70,7 +87,8 @@ function interpol(points, temp){
 			var flag = false;
 
 			var sumNum = 0;
-			var sumDen = 0;
+            var sumDen = 0;
+            // calculates Numerator 
 			for(var index = 0; index < points.length; index++){
 				var xx = points[index][0] - xMin;
 				var yy = points[index][1] - yMin;
@@ -84,6 +102,7 @@ function interpol(points, temp){
 				ret *= temp[index]
 				sumNum += ret;
             }
+            // calculates the denominator
             for(var index=0; index<points.length; index++){
                 if(flag){
                     continue;
@@ -100,4 +119,38 @@ function interpol(points, temp){
 		}
 	}
     //return valueField;
+}
+
+// modifies the color of each point
+function colorMod(temp, min, max){
+    var color = {r: 0, g: 0, b: 0}
+    color.r = (temp - min) / (max - min);
+
+        // green component goes up to 1 at 1/2 way point then back down to 0
+        var halfway = min + (max-min)/2;
+        if (temp < halfway)
+            // ramp up
+            color.g = (temp - min) / (halfway - min);
+        else
+            // ramp down
+            color.g = (max - temp) / (max - halfway);
+
+        // blue component is a linear ramp down
+        color.b = (max - temp) / (max - min);
+    return color;
+}
+
+// finds the min temperature and the max temperature
+function maxMin(max, min, field, xSize, ySize){
+    console.log("why")
+    for(var i = 0; i< ySize; i++){
+        for (var j = 0; j < xSize; j++){
+            if(field[i][j] > max) {
+                max = field[i][j];
+            }
+            if (field[i][j] < min){
+                min = field[i][j];
+            }
+        }
+    }
 }
