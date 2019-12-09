@@ -13,9 +13,7 @@ var values = [];
     coords[1][1] = 50;     // y2
     values[1]    = 200.5;  // t2
 //}
-console.log(coords);
-//console.log(coords.length);
-//console.log(coords[0].length)
+
 
 var xSize = 200;
 var ySize = 100;
@@ -26,18 +24,15 @@ var tempField = new Array(ySize);
 for (var z = 0; z< ySize; z++){
     tempField[z] = new Array(xSize);
 }
-console.log("before setup")
+
 interpol(coords, values);
-//tempField[0][0] = 5;
-//console.log(tempField)
+
 
 
 function setup(){
     createCanvas(xSize, ySize)
     background(0)
-    //colorMode(HSB, 100)
-    //noStroke();
-    console.log("inside setup()")
+   
 
     for(var i = 0; i< ySize; i++){
         for (var j = 0; j < xSize; j++){
@@ -50,12 +45,7 @@ function setup(){
             }
         }
     }
-    //fill(2, 200, 100)
-    //rect(40, 50, 50, 50)
-    //stroke(131)
-    //point(50,50)
-    //stroke(200, 100, 100)
-    //point(40,50)
+   
 
 }
 
