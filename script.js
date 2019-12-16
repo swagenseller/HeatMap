@@ -51,9 +51,10 @@ function setup(){
 
     for(var i = 0; i< ySize; i++){
         for (var j = 0; j < xSize; j++){
-            //var color = colorMod(tempField[i][j], tmin, tmax)
-            stroke(floor(tempField[i][j]), tmin, tmax)
+            var color = colorMod(tempField[i][j], tmin, tmax)
+            //stroke(floor(tempField[i][j]), tmin, tmax)
             //stroke(color.r, color.g, color.b)
+            stroke(255 * color.r, 255 * color.g, 255 * color.b)
             point(j, i);
             if(i == 0 && j == 0){
                 console.log(floor(tempField[i][j]))
@@ -141,6 +142,7 @@ function colorMod(temp, min, max){
 }
 
 // finds the min temperature and the max temperature
+// uncessary because, by definition of shepard's method min and max are defined
 function maxMin(max, min, field, xSize, ySize){
     console.log("why")
     for(var i = 0; i< ySize; i++){
