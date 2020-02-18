@@ -13,6 +13,15 @@ var values = [];
     coords[1][1] = 50;     // y2
     values[1]    = 200.5;  // t2
 //}
+
+//
+coords[0][0] = 125
+coords[0][1] = 125
+values[0] = 10
+coords[1][0] = 375
+coords[1][1] = 375 
+values[1] =320
+
 var tmax = values[0];
 var tmin = values[0];
 
@@ -27,8 +36,8 @@ for (var i =0; i<values.length; i++){
 console.log(tmax)
 console.log(tmin)
 
-var xSize = 200;
-var ySize = 100;
+var xSize = 500;
+var ySize = 500;
 var xMin = 0;
 var yMin = 0;
 
@@ -36,6 +45,7 @@ var tempField = new Array(ySize);
 for (var z = 0; z< ySize; z++){
     tempField[z] = new Array(xSize);
 }
+console.log()
 
 interpol(coords, values);
 //console.log(tempField)
@@ -52,12 +62,13 @@ function setup(){
     for(var i = 0; i< ySize; i++){
         for (var j = 0; j < xSize; j++){
             var color = colorMod(tempField[i][j], tmin, tmax)
-            //stroke(floor(tempField[i][j]), tmin, tmax)
-            //stroke(color.r, color.g, color.b)
-            stroke(255 * color.r, 255 * color.g, 255 * color.b)
-            point(j, i);
-            if(i == 0 && j == 0){
-                console.log(floor(tempField[i][j]))
+            noStroke();
+            //fill(floor(tempField[i][j]), tmin, tmax)
+            //fill(color.r, color.g, color.b)
+            fill(255 * color.r, 255 * color.g, 255 * color.b)
+            rect(j, i, 1, 1);
+            if(i == 50 && j == 200){
+                console.log("test " + floor(tempField[i][j]))
                 //console.log(color)
                 //rect(j,i, 50, 50)
             }
@@ -155,4 +166,18 @@ function maxMin(max, min, field, xSize, ySize){
             }
         }
     }
+}
+
+
+function getMore(){
+    var xMax = document.querySelector("#sWidth").value;
+    var yMax = document.querySelector("#sHeight").value;
+    var numP = document.querySelector("#numP").value;
+
+    var box = document.querySelector("#points")
+    for (let i = 0; i < numP; i++){
+
+        // add three html number inputs for Xs, Ys and temperature
+    }
+    console.log(yMax + " " + xMax + " " + numP)
 }
