@@ -1,0 +1,14 @@
+#points {
+    width: 60%;
+}
+#points input {
+    width: 30%;
+    margin: 1%;
+}
+input {
+    width: 40px;
+    margin: 1%;
+}
+#sub {
+    width: 80px;
+}

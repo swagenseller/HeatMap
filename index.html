@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <link href="theme.css" type="text/css" rel="stylesheet">
     <title>Shepard's HeatMap</title>
     <!--<link href="style.css" rel="stylesheet" type="text/css" />  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
@@ -10,14 +11,15 @@
   <body>
     <div id = "input">
        
-          <input type="number" id="sWidth" name="X" >
-          <input type="number" id="sHeight" name="Y" >
-          <input type="number" id="numP" name="#ofPoints" >
+          <span>Width:</span><input type="number" id="sWidth" name="X" >
+          <span>Height:</span><input type="number" id="sHeight" name="Y" >
+          <span># of Points</span><input type="number" id="numP" name="#ofPoints" >
           <input type="button" id="sub" value="submit" onclick="getMore()">
         
         <div id="points"></div>
     </div>
    <br>
+   <div id="points"></div>
     
     <script src="script.js"></script>
   </body>

@@ -1,8 +1,10 @@
 var numPoints = 2;
+// stores the given coordinates x and y
 var coords = [
     [],
     []
 ];
+//stores the values of those coordinates
 var values = [];
 
 //for(var  i = 0; i<numPoints; i++){
@@ -15,12 +17,12 @@ var values = [];
 //}
 
 //
-coords[0][0] = 125
+/*coords[0][0] = 125
 coords[0][1] = 125
 values[0] = 10
 coords[1][0] = 375
 coords[1][1] = 375 
-values[1] =320
+values[1] =320*/
 
 var tmax = values[0];
 var tmin = values[0];
@@ -36,8 +38,8 @@ for (var i =0; i<values.length; i++){
 console.log(tmax)
 console.log(tmin)
 
-var xSize = 500;
-var ySize = 500;
+var xSize = 200;
+var ySize = 100;
 var xMin = 0;
 var yMin = 0;
 
@@ -168,16 +170,42 @@ function maxMin(max, min, field, xSize, ySize){
     }
 }
 
+var tempCoords = [
+    [],
+    []
+];
+var tempValues = [];
 
 function getMore(){
     var xMax = document.querySelector("#sWidth").value;
     var yMax = document.querySelector("#sHeight").value;
     var numP = document.querySelector("#numP").value;
 
-    var box = document.querySelector("#points")
+    var box = document.getElementById("points")
     for (let i = 0; i < numP; i++){
-
         // add three html number inputs for Xs, Ys and temperature
+        var xi = document.createElement("input");
+        xi.setAttribute("type", "number")
+        xi.setAttribute("id", "x" + i)
+        var yi = document.createElement("input");
+        yi.setAttribute("type", "number")
+        yi.setAttribute("id", "y" + i)
+        var ti = document.createElement("input");
+        ti.setAttribute("type", "number")
+        ti.setAttribute("id", "t" + i)
+
+
+
+        box.appendChild(xi)
+        box.appendChild(yi)
+        box.appendChild(ti)
+
     }
-    console.log(yMax + " " + xMax + " " + numP)
+    let btn = document.createElement("button")
+    btn.innerHTML = "Create Map";
+    
+    btn.addEventListener("click", function(){
+        
+    });
+    //console.log(yMax + " " + xMax + " " + numP)
 }
