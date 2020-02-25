@@ -175,37 +175,48 @@ var tempCoords = [
     []
 ];
 var tempValues = [];
-
+//var box = document.getElementById("points");
 function getMore(){
     var xMax = document.querySelector("#sWidth").value;
     var yMax = document.querySelector("#sHeight").value;
     var numP = document.querySelector("#numP").value;
 
-    var box = document.getElementById("points")
+   var box = document.getElementById("points")
     for (let i = 0; i < numP; i++){
         // add three html number inputs for Xs, Ys and temperature
+        var xLabel = document.createElement("span");
+        xLabel.textContent = "X" + (i + 1) + ":";
         var xi = document.createElement("input");
         xi.setAttribute("type", "number")
         xi.setAttribute("id", "x" + i)
+        var yLabel = document.createElement("span");
+        yLabel.textContent = "Y" + (i + 1) + ":";
         var yi = document.createElement("input");
         yi.setAttribute("type", "number")
         yi.setAttribute("id", "y" + i)
+        var tLabel = document.createElement("span");
+        tLabel.textContent = "T" + (i + 1) + ":";
         var ti = document.createElement("input");
         ti.setAttribute("type", "number")
         ti.setAttribute("id", "t" + i)
 
 
-
-        box.appendChild(xi)
-        box.appendChild(yi)
-        box.appendChild(ti)
+        box.appendChild(xLabel)
+        xLabel.appendChild(xi)
+        box.appendChild(yLabel)
+        yLabel.appendChild(yi)
+        box.appendChild(tLabel)
+        tLabel.appendChild(ti)
+    
 
     }
+    
     let btn = document.createElement("button")
     btn.innerHTML = "Create Map";
     
     btn.addEventListener("click", function(){
-        
+        // experiment with the p.sketch stuff now
     });
+    box.appendChild(btn);
     //console.log(yMax + " " + xMax + " " + numP)
 }
